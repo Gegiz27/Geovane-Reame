@@ -1,18 +1,21 @@
 # Geovane-Reame
-//Array de coordenadas para seis vértices
 
-float verts[] = {
+unsigned int theVAO; // Nome do Vértice Array Objeto (VAO)
 
-0.5 , 1.0, //vértice v0
+glGenVertexArrays (1,&theVAO);
 
-2.0 , 2.0, //vértice v1
+unsigned int theVBO; // Nome do Vértice Buffer Objeto (VBO)
 
-1.8 , 2.6, //vértice v2
+glGenBuffers (1, &theVBO);
 
-0.7 , 2.2, //vértice v3
+glBindBuffer (GLARRAYBUFFER,theVBO); // Selecione o VBO ativo
 
-1.6 , 1.2, //vértice v4
+glBufferData (GLARRAYBUFFER, sizeof(verts), verts, GLSTATICDRAW);
 
-1.0 , 0.5 //vértice v5
+unsigned int vPos loc = 0; // Localização do shader
 
-};
+glBindVertexArray(theVAO); // Selecione o VAO ativo
+
+glVertexAttribPointer (vPos loc, 2, GL_FLOAT, GL_FALSE, 0,(void*)0 );
+
+glEnableVertexAttribArray(vPos loc);
